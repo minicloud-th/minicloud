@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as OrdersRouteImport } from './routes/orders'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as StoreRouteImport } from './routes/store'
 import { Route as WalletRouteImport } from './routes/wallet'
@@ -29,6 +30,11 @@ const AuthRoute = AuthRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrdersRoute = OrdersRouteImport.update({
+  id: '/orders',
+  path: '/orders',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfileRoute = ProfileRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/orders': typeof OrdersRoute
   '/profile': typeof ProfileRoute
   '/store': typeof StoreRoute
   '/wallet': typeof WalletRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/orders': typeof OrdersRoute
   '/profile': typeof ProfileRoute
   '/store': typeof StoreRoute
   '/wallet': typeof WalletRoute
@@ -68,23 +76,33 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
+  '/orders': typeof OrdersRoute
   '/profile': typeof ProfileRoute
   '/store': typeof StoreRoute
   '/wallet': typeof WalletRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/contact' | '/profile' | '/store' | '/wallet'
+  fullPaths:
+    '/' | '/auth' | '/contact' | '/orders' | '/profile' | '/store' | '/wallet'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/contact' | '/profile' | '/store' | '/wallet'
+  to: '/' | '/auth' | '/contact' | '/orders' | '/profile' | '/store' | '/wallet'
   id:
-    '__root__' | '/' | '/auth' | '/contact' | '/profile' | '/store' | '/wallet'
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/contact'
+    | '/orders'
+    | '/profile'
+    | '/store'
+    | '/wallet'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
+  OrdersRoute: typeof OrdersRoute
   ProfileRoute: typeof ProfileRoute
   StoreRoute: typeof StoreRoute
   WalletRoute: typeof WalletRoute
@@ -111,6 +129,13 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/orders': {
+      id: '/orders'
+      path: '/orders'
+      fullPath: '/orders'
+      preLoaderRoute: typeof OrdersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/profile': {
@@ -141,6 +166,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
+  OrdersRoute: OrdersRoute,
   ProfileRoute: ProfileRoute,
   StoreRoute: StoreRoute,
   WalletRoute: WalletRoute,
