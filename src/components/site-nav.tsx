@@ -1,7 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { Cloud } from "lucide-react";
 import { Button } from "@/components/ui/button";
-...
+
+const links = [
+  { to: "/", label: "หน้าหลัก" },
+  { to: "/store", label: "ร้านค้า" },
+  { to: "/contact", label: "ติดต่อเรา" },
+] as const;
+
+export function SiteNav() {
+  return (
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/50 bg-background/70 backdrop-blur-xl">
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link to="/" className="flex items-center gap-2">
           <span
             className="flex size-8 items-center justify-center rounded-lg animate-glow"
