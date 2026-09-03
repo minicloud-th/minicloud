@@ -41,7 +41,7 @@ function WalletPage() {
     queryFn: async () => {
       const { data, error } = await supabase
         .from("transactions")
-        .select("id, amount, type, description, created_at")
+        .select("id, amount, type, note, created_at")
         .order("created_at", { ascending: false })
         .limit(50);
       if (error) throw error;
@@ -58,7 +58,7 @@ function WalletPage() {
       toast.error(error.message);
       return;
     }
-    toast.success(`เติมเงินสำเร็จ +${thb(Number(data))}`);
+    toast.success(`เติมเงินสำเร็จ +${thb(Number((data as { amount?: number } | null)?.amount ?? 0))}`);
     setCode("");
     void queryClient.invalidateQueries();
   };
@@ -86,7 +86,7 @@ function WalletPage() {
           {(txs.data ?? []).map((t) => (
             <div key={t.id} className="flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3">
               <div>
-                <p className="text-sm">{t.description ?? t.type}</p>
+                <p className="text-sm">{t.note ?? t.type}</p>
                 <p className="text-xs text-muted-foreground">
                   {new Date(t.created_at as string).toLocaleString("th-TH")}
                 </p>

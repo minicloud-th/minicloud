@@ -42,7 +42,7 @@ function AuthPage() {
     setBusy(true);
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("เข้าสู่ระบบสำเร็จ");
     void navigate({ to: "/profile" });
   };
@@ -59,7 +59,7 @@ function AuthPage() {
       },
     });
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) { toast.error(error.message); return; }
     toast.success("สมัครสมาชิกสำเร็จ! หากระบบขอยืนยันอีเมล กรุณาเช็คกล่องจดหมาย");
   };
 
@@ -67,7 +67,7 @@ function AuthPage() {
     const result = await lovable.auth.signInWithOAuth("google", {
       redirect_uri: window.location.origin,
     });
-    if (result.error) return toast.error("เข้าสู่ระบบด้วย Google ไม่สำเร็จ");
+    if (result.error) { toast.error("เข้าสู่ระบบด้วย Google ไม่สำเร็จ"); return; }
     if (result.redirected) return;
     void navigate({ to: "/profile" });
   };
