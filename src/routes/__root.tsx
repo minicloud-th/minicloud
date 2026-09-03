@@ -79,11 +79,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "SYNCX STUIDO" },
-      { name: "description", content: "ร้านค้าออนไลน์ SYNCX STUIDO แอดมินพร้อมบริการ 24 ชม." },
-      { name: "author", content: "SYNCX STUIDO" },
-      { property: "og:title", content: "SYNCX STUIDO" },
-      { property: "og:description", content: "ร้านค้าออนไลน์ SYNCX STUIDO แอดมินพร้อมบริการ 24 ชม." },
+      { title: "MiniCloud AFK" },
+      { name: "description", content: "ร้านค้าไอเทม Roblox MiniCloud AFK แอดมินพร้อมบริการ 24 ชม." },
+      { name: "author", content: "MiniCloud AFK" },
+      { property: "og:title", content: "MiniCloud AFK" },
+      { property: "og:description", content: "ร้านค้าไอเทม Roblox MiniCloud AFK แอดมินพร้อมบริการ 24 ชม." },
 
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

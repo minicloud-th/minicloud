@@ -8,10 +8,10 @@ import cat2 from "@/assets/cat-2.jpg";
 export const Route = createFileRoute("/store")({
   head: () => ({
     meta: [
-      { title: "ร้านค้า — SYNCX STUIDO" },
-      { name: "description", content: "เลือกซื้อสินค้าทั้งหมดของ SYNCX STUIDO ระบบส่งสินค้าอัตโนมัติ ปลอดภัย 24 ชม." },
-      { property: "og:title", content: "ร้านค้า — SYNCX STUIDO" },
-      { property: "og:description", content: "เลือกซื้อสินค้าทั้งหมดของ SYNCX STUIDO ระบบส่งสินค้าอัตโนมัติ" },
+      { title: "ร้านค้า — MiniCloud AFK" },
+      { name: "description", content: "เลือกซื้อไอเทม Roblox ทั้งหมดของ MiniCloud AFK ระบบส่งสินค้าอัตโนมัติ ปลอดภัย 24 ชม." },
+      { property: "og:title", content: "ร้านค้า — MiniCloud AFK" },
+      { property: "og:description", content: "เลือกซื้อไอเทม Roblox ทั้งหมดของ MiniCloud AFK ระบบส่งสินค้าอัตโนมัติ" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -20,8 +20,8 @@ export const Route = createFileRoute("/store")({
 });
 
 const products = [
-  { name: "Example 1", price: "99", image: cat1, stock: 1 },
-  { name: "Example 2", price: "149", image: cat2, stock: 1 },
+  { name: "ไอเทมดาบฟ้า", price: "99", image: cat1, stock: 1 },
+  { name: "สัตว์เลี้ยงเมฆ", price: "149", image: cat2, stock: 1 },
 ];
 
 function Store() {
@@ -30,13 +30,14 @@ function Store() {
       <SiteNav />
       <main className="mx-auto max-w-7xl px-6 pb-24 pt-28">
         <h1 className="text-4xl font-semibold tracking-tight">ร้านค้า</h1>
-        <p className="mt-2 text-sm text-muted-foreground">สินค้าทั้งหมดพร้อมส่งอัตโนมัติ</p>
+        <p className="mt-2 text-sm text-muted-foreground">ไอเทม Roblox ทั้งหมดพร้อมส่งอัตโนมัติ</p>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p) => (
+          {products.map((p, i) => (
             <article
               key={p.name}
-              className="overflow-hidden rounded-2xl border border-border bg-card/60 transition-all hover:border-primary/50 hover:shadow-[var(--shadow-glow)]"
+              className="animate-fade-up overflow-hidden rounded-2xl border border-border bg-card transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-[var(--shadow-glow)]"
+              style={{ "--fade-delay": `${i * 120}ms` } as React.CSSProperties}
             >
               <img
                 src={p.image}
